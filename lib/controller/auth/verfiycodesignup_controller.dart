@@ -13,7 +13,7 @@ abstract class VerifyCodeSignUpController extends GetxController {
 
 class VerifyCodeSignUpControllerImp extends VerifyCodeSignUpController {
   VerfiyCodeSignUpData verfiyCodeSignUpData = VerfiyCodeSignUpData(Get.find());
-  StatusRequest? statusRequest;
+StatusRequest? statusRequest = StatusRequest.none;
   String? email;
 
   @override

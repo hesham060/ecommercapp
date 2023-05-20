@@ -19,7 +19,7 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController phone;
   late TextEditingController password;
 
-  StatusRequest? statusRequest;
+StatusRequest? statusRequest = StatusRequest.none;
 
   SignUpData signupData = SignUpData(Get.find());
 
@@ -54,7 +54,7 @@ class SignUpControllerImp extends SignUpController {
 
   @override
   goToSignIn() {
-    Get.offNamed(AppRoute.Login);
+    Get.offNamed(AppRoute.login);
   }
 
   @override

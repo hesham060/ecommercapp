@@ -23,7 +23,7 @@ class OnBoardingControllerImpl extends OnBoardingController {
       myServices.sharedPreferences.setString(
           AppStrings.myMiddlewareRoute, AppStrings.mymiddleWareValue);
 
-      Get.offAllNamed(AppRoute.Login);
+      Get.offAllNamed(AppRoute.login);
     } else {
       pageController.animateToPage(currentPage,
           duration:const Duration(milliseconds: 300), curve: Curves.easeInOut);

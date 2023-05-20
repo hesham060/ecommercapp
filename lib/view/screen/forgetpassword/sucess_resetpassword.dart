@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/auth/sucess_resetpassword_controller.dart';
-import '../../../../core/constants/colors.dart';
-import '../../../widget/auth/CustomButtomAuth.dart';
+import '../../../controller/auth/sucess_resetpassword_controller.dart';
+import '../../../core/constants/colors.dart';
+import '../../widget/auth/CustomButtomAuth.dart';
 
 class SuccessResetPassword extends StatelessWidget {
   const SuccessResetPassword({Key? key}) : super(key: key);
@@ -34,16 +34,16 @@ class SuccessResetPassword extends StatelessWidget {
           )),
           const Text("...."),
           const Text("...."),
-          Spacer() , 
-          Container(
+          const Spacer(),
+          SizedBox(
             width: double.infinity,
             child: CustomButtomAuth(
                 text: "Go To Login",
                 onPressed: () {
-                controller.goToPageLogin();
+                  controller.goToPageLogin();
                 }),
           ),
-          SizedBox(height: 30)
+          const SizedBox(height: 30)
         ]),
       ),
     );

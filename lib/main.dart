@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       locale: controller.language,
-      theme: controller.apptheme, 
-      initialBinding:InitialBindings() ,
+      theme: controller.apptheme,
+      initialBinding: InitialBindings(),
       // routes: routes,
       getPages: routes,
     );

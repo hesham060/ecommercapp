@@ -11,7 +11,7 @@ goToPageLogin() ;
 class SuccessResetPasswordControllerImp extends SuccessResetPasswordController {
   @override
   goToPageLogin() {
-     Get.offAllNamed(AppRoute.Login) ; 
+     Get.offAllNamed(AppRoute.login) ; 
   }
 
 }

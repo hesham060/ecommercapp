@@ -31,10 +31,14 @@ class AppStrings {
     static String confim = "42";
     static String cancel = "43";
     // my middleware
-    static String myMiddlewareRoute = "onboarding";
+    static String myMiddlewareRoute = "step";
     // route definition
     static String firstRoute="/";
-    // onboarding page 
+    // middleware values
     static String mymiddleWareValue="1";
+    // shared preferences values
+    static String username= "username";
+    static String id= "id";
+    
 
 }
