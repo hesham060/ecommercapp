@@ -1,17 +1,17 @@
-import 'package:ecommercapp/controller/home/home_controller.dart';
+import 'package:ecommercapp/controller/items_controller.dart';
 import 'package:ecommercapp/data/model/categoriesmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/colors.dart';
-import '../../../linkapi.dart';
 
-class ListCategoriesItems extends GetView<HomeControllerImp> {
+class ListCategoriesItems extends GetView<ItemsControllerImpl> {
   const ListCategoriesItems({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ItemsControllerImpl itemsControllerImpl = Get.put(ItemsControllerImpl());
+
     return SizedBox(
       height: 100,
       child: ListView.separated(
@@ -30,7 +30,7 @@ class ListCategoriesItems extends GetView<HomeControllerImp> {
   }
 }
 
-class Categories extends GetView<HomeControllerImp> {
+class Categories extends GetView<ItemsControllerImpl> {
   final int? i;
   final CategoriesModel categoriesModel;
   const Categories({super.key, required this.i, required this.categoriesModel});
@@ -39,25 +39,25 @@ class Categories extends GetView<HomeControllerImp> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.gotoItems(controller.categories, i!);
+        // controller.gotoItems(controller.categories, i!);
+        controller.changeCat(i!);
       },
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: AppColor.thirdColor,
-              borderRadius: BorderRadius.circular(20),
+          GetBuilder<ItemsControllerImpl>(
+            builder: (controller) => Container(
+              padding: EdgeInsets.only(bottom: 5, left: 5, right: 5),
+              decoration: controller.selectedCat == i
+                  ? BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              width: 3, color: AppColor.primaryColor)))
+                  : null,
+              child: Text(
+                "${categoriesModel.categoriesName}",
+                style: const TextStyle(fontSize: 20, color: AppColor.grey2),
+              ),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            height: 70,
-            width: 70,
-            child: SvgPicture.network(
-                "${ApiLink.imagesCategories}/${categoriesModel.categoriesImage}",
-                color: AppColor.secondColor),
-          ),
-          Text(
-            "${categoriesModel.categoriesName}",
-            style: const TextStyle(fontSize: 13, color: AppColor.black),
           ),
         ],
       ),
