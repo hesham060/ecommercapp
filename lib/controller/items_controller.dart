@@ -6,22 +6,20 @@ import '../core/fuctions/handlingdata.dart';
 
 abstract class ItemsController extends GetxController {
   intialData();
-  changeCat(int val); 
-  getItems();
+  changeCat(int val,String catVal);
+  getItems(String categoryid,);
 }
 
 class ItemsControllerImpl extends ItemsController {
-
   List categories = [];
   int? selectedCat;
+  String? catid;
   ItemsData itemsData = ItemsData(Get.find());
 
   List data = [];
 
   late StatusRequest statusRequest;
 
-  
-  
   @override
   void onInit() {
     intialData();
@@ -31,31 +29,33 @@ class ItemsControllerImpl extends ItemsController {
   intialData() {
     categories = Get.arguments["categories"];
     selectedCat = Get.arguments["selectedCat"];
-      getItems();
-  
+    catid = Get.arguments["categoryid"];
+    getItems(catid!);
   }
 
   @override
-  changeCat(val) {
-  selectedCat=val;
-  update();
+  changeCat(val,catVal) {
+    selectedCat = val;
+    catid=catVal;
+      getItems(catid!);
+    update();
   }
-  
+
   @override
-  getItems()async {
-      statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData();
+  getItems(categoryid) async {
+  data.clear();
+    statusRequest = StatusRequest.loading;
+    var response = await itemsData.getData(categoryid);
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
-    // start back end
+      // start back end
       if (response['status'] == "success") {
         data.addAll(response['data']);
       } else {
-        statusRequest = StatusRequest.failure ; 
+        statusRequest = StatusRequest.failure;
       }
     }
     update();
-  
   }
 }

@@ -40,7 +40,7 @@ class Categories extends GetView<ItemsControllerImpl> {
     return InkWell(
       onTap: () {
         // controller.gotoItems(controller.categories, i!);
-        controller.changeCat(i!);
+        controller.changeCat(i!,categoriesModel.categoriesId!);
       },
       child: Column(
         children: [

@@ -15,37 +15,34 @@ class ItemsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImpl());
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: GetBuilder<ItemsControllerImpl>(
-            builder: (controller) => HandlingDataRequest(
+        body: Container(
+      padding: EdgeInsets.all(20),
+      child: ListView(
+        children: [
+          CustomAppBar(
+            titleAppBar: "Find Product",
+            onPressedIcon: () {},
+            onPressedSearch: () {},
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ListCategoriesItems(),
+          GetBuilder<ItemsControllerImpl>(
+              builder: (controller) => HandlingDataRequest(
                   statusRequest: controller.statusRequest,
-                  widget: ListView(
-                    children: [
-                      CustomAppBar(
-                        titleAppBar: "Find Product",
-                        onPressedIcon: () {},
-                        onPressedSearch: () {},
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ListCategoriesItems(),
-                      GridView.builder(
-                          shrinkWrap: true,
-                          itemCount: 2,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2, childAspectRatio: 0.7),
-                          itemBuilder: (context, index) {
-                            return CustomListItems(
-                                itemsModel: ItemsModel.fromJson(
-                                    controller.data[index]));
-                          })
-                    ],
-                  ),
-                )),
+                  widget: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.data.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, childAspectRatio: 0.7),
+                      itemBuilder: (context, index) {
+                        return CustomListItems(
+                            itemsModel:
+                                ItemsModel.fromJson(controller.data[index]));
+                      })))
+        ],
       ),
-    );
+    ));
   }
 }
