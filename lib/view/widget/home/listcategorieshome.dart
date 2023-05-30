@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/fuctions/transaltedatabase.dart';
 import '../../../linkapi.dart';
 
 class ListCategoriesHome extends GetView<HomeControllerImp> {
@@ -55,8 +56,9 @@ class Categories extends GetView<HomeControllerImp> {
                 "${ApiLink.imagesCategories}/${categoriesModel.categoriesImage}",
                 color: AppColor.secondColor),
           ),
+          // name of list category
           Text(
-            "${categoriesModel.categoriesName}",
+            "${translateDatabase(categoriesModel.categoriesNameAr,categoriesModel.categoriesName)}",
             style: const TextStyle(fontSize: 13, color: AppColor.black),
           ),
         ],

@@ -1,13 +1,16 @@
 import 'package:ecommercapp/data/datasource/remote/items/items_data.dart';
+import 'package:ecommercapp/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
-
 import '../core/class/statusrequest.dart';
 import '../core/fuctions/handlingdata.dart';
 
 abstract class ItemsController extends GetxController {
   intialData();
-  changeCat(int val,String catVal);
-  getItems(String categoryid,);
+  changeCat(int val, String catVal);
+  getItems(
+    String categoryid,
+  );
+  gotoPageProductDetails(ItemsModel itemsModel);
 }
 
 class ItemsControllerImpl extends ItemsController {
@@ -34,16 +37,16 @@ class ItemsControllerImpl extends ItemsController {
   }
 
   @override
-  changeCat(val,catVal) {
+  changeCat(val, catVal) {
     selectedCat = val;
-    catid=catVal;
-      getItems(catid!);
+    catid = catVal;
+    getItems(catid!);
     update();
   }
 
   @override
   getItems(categoryid) async {
-  data.clear();
+    data.clear();
     statusRequest = StatusRequest.loading;
     var response = await itemsData.getData(categoryid);
     print("=============================== Controller $response ");
@@ -57,5 +60,10 @@ class ItemsControllerImpl extends ItemsController {
       }
     }
     update();
+  }
+
+  @override
+  gotoPageProductDetails(itemsModel) {
+    Get.toNamed("productDetails", arguments: {"itemsModel": itemsModel});
   }
 }

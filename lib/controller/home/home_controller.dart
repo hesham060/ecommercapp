@@ -1,6 +1,7 @@
 import 'package:ecommercapp/core/constants/routes.dart';
 import 'package:ecommercapp/core/fuctions/handlingdata.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/class/statusrequest.dart';
 import '../../core/services/services.dart';
@@ -17,6 +18,7 @@ class HomeControllerImp extends HomeController {
 
   String? username;
   String? id;
+  String ?lang;
 
   HomePageData homedata = HomePageData(Get.find());
 
@@ -29,6 +31,7 @@ class HomeControllerImp extends HomeController {
 
   @override
   initialData() {
+  lang=myServices. sharedPreferences.getString("lang");
     username = myServices.sharedPreferences.getString("username");
     id = myServices.sharedPreferences.getString("id");
   }

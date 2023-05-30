@@ -12,6 +12,8 @@ class AppColor {
         static const Color backgroundColor=Color.fromARGB(255, 252, 252, 252);
 
     static const Color thirdColor= Color.fromARGB(255, 174, 212, 233);
+    static const Color red= Color.fromARGB(255, 187, 4, 50);
+    static const Color white= Color.fromARGB(255, 255, 255, 255);
     
     
 
