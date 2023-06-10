@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommercapp/controller/favorite_controller.dart';
 import 'package:ecommercapp/controller/items_controller.dart';
 import 'package:ecommercapp/data/model/itemsmodel.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,19 @@ import '../../../linkapi.dart';
 
 class CustomListItems extends GetView<ItemsControllerImpl> {
   final ItemsModel itemsModel;
+  // final bool active;
 
-  const CustomListItems({super.key, required this.itemsModel});
+  const CustomListItems({
+    super.key,
+    required this.itemsModel,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-      controller.gotoPageProductDetails(itemsModel);},
+        controller.gotoPageProductDetails(itemsModel);
+      },
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -27,13 +33,11 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
               children: [
                 Container(
                   height: 100,
-                  child: Hero
-                  (
-                   tag: "${itemsModel.itemsImage}",
+                  child: Hero(
+                    tag: "${itemsModel.itemsImage}",
                     child: CachedNetworkImage(
                       imageUrl:
                           ApiLink.imagesItems + "/" + itemsModel.itemsImage!,
-                        
                     ),
                   ),
                 ),
@@ -62,7 +66,7 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
                   height: 5,
                 ),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -72,11 +76,23 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
                           color: AppColor.primaryColor,
                           fontFamily: "sans"),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border_outlined,
-                        color: AppColor.primaryColor,
+                    GetBuilder<FavoriteController>(
+                      builder: (controller) => IconButton(
+                        onPressed: () {
+                        if(  controller.isFavorite[itemsModel.itemsId] == "1"){
+                        
+                        controller.setFavorite(itemsModel.itemsId , "0");
+                        controller.removeFavorite(itemsModel.itemsId!);
+                        }
+                             controller.setFavorite(itemsModel.itemsId , "1");
+                              controller.addFavorite(itemsModel.itemsId!);
+                        },
+                        icon: Icon(
+                        controller.isFavorite[itemsModel.itemsId] == "1"
+                              ? Icons.favorite
+                              : Icons.favorite_border_outlined,
+                          color: AppColor.primaryColor,
+                        ),
                       ),
                     ),
                   ],

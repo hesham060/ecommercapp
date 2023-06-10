@@ -1,3 +1,4 @@
+import 'package:ecommercapp/controller/favorite_controller.dart';
 import 'package:ecommercapp/controller/items_controller.dart';
 import 'package:ecommercapp/core/class/handlingdataview.dart';
 import 'package:ecommercapp/data/model/itemsmodel.dart';
@@ -14,35 +15,45 @@ class ItemsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ItemsControllerImpl());
+    FavoriteController favoritesController = Get.put(FavoriteController());
     return Scaffold(
-        body: Container(
-      padding: EdgeInsets.all(20),
-      child: ListView(
-        children: [
-          CustomAppBar(
-            titleAppBar: "Find Product",
-            onPressedIcon: () {},
-            onPressedSearch: () {},
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          ListCategoriesItems(),
-          GetBuilder<ItemsControllerImpl>(
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            CustomAppBar(
+              titleAppBar: "Find Product",
+              onPressedIcon: () {},
+              onPressedSearch: () {},
+              onPressedFavorites: () {
+                
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ListCategoriesItems(),
+            GetBuilder<ItemsControllerImpl>(
               builder: (controller) => HandlingDataRequest(
-                  statusRequest: controller.statusRequest,
-                  widget: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.data.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, childAspectRatio: 0.7),
-                      itemBuilder: (context, index) {
-                        return CustomListItems(
-                            itemsModel:
-                                ItemsModel.fromJson(controller.data[index]));
-                      })))
-        ],
+                statusRequest: controller.statusRequest,
+                widget: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.data.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 0.7),
+                  itemBuilder: (context, index) {
+                  favoritesController.isFavorite[controller.data[index]['items_id']]=controller.data[index]['favorite'];
+                    return CustomListItems(
+                    
+                        itemsModel:
+                            ItemsModel.fromJson(controller.data[index]));
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

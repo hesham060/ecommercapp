@@ -16,5 +16,6 @@ class AppRoute {
   static const String resetPassword = "/resetpassword";
   static const String items = "/items";
   static const String product = "/productDetails";
+  static const String myfavorite = "/myfavorite";
   
 }

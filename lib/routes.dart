@@ -9,6 +9,7 @@ import 'package:ecommercapp/view/screen/auth/verfiycodesignup.dart';
 import 'package:ecommercapp/view/screen/homescreen.dart';
 import 'package:ecommercapp/view/screen/items.dart';
 import 'package:ecommercapp/view/screen/language/language.dart';
+import 'package:ecommercapp/view/screen/myfavorites.dart';
 import 'package:ecommercapp/view/screen/onboarding/onboarding.dart';
 import 'package:ecommercapp/view/screen/productdetailsscreen.dart';
 import 'package:get/get.dart';
@@ -39,4 +40,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.homePage, page: () => const HomeScreen()),
   GetPage(name: AppRoute.items, page: () => const ItemsScreen()),
   GetPage(name: AppRoute.product, page: () => const ProductDetailsScreen()),
+  GetPage(name: AppRoute.myfavorite, page: () => const MyFavorite()),
 ];

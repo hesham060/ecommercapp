@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommercapp/controller/productdetailscontroller.dart';
 import 'package:ecommercapp/core/constants/colors.dart';
-import 'package:ecommercapp/linkapi.dart';
 import 'package:ecommercapp/view/widget/productdetails/subitemslist.dart';
 import 'package:ecommercapp/view/widget/productdetails/topproductpagedetails.dart';
 import 'package:flutter/material.dart';

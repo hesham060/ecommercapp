@@ -1,4 +1,5 @@
 import 'package:ecommercapp/core/class/handlingdataview.dart';
+import 'package:ecommercapp/core/constants/routes.dart';
 import 'package:ecommercapp/view/widget/customappbar.dart';
 import 'package:ecommercapp/view/widget/home/customcardhome.dart';
 import 'package:ecommercapp/view/widget/home/customtitlehome.dart';
@@ -25,6 +26,11 @@ class Home extends StatelessWidget {
               titleAppBar: "Find Product",
               onPressedIcon: () {},
               onPressedSearch: () {},
+              onPressedFavorites: () {
+              
+              Get.toNamed(AppRoute.myfavorite);
+              
+              },
             ),
             CustomCardHome(title: "A Summer Surprise", body: "Cash back 20%"),
             ListCategoriesHome(),

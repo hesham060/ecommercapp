@@ -28,5 +28,13 @@ class ApiLink {
 
   static const String homePage = "$server/home.php";
   // =============================== items =============================
-static const String items = "$server/items/items.php"  ;
+  static const String items = "$server/items/items.php";
+  // =============================== items =============================
+  static const String favoriteAdd = "$server/favorite/add.php";
+  static const String favoriteRemove = "$server/favorite/remove.php";
+  static const String favoriteView = "$server/favorite/view.php";
+  
+  
+  
+  
 }

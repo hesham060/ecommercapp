@@ -1,3 +1,4 @@
+import 'package:ecommercapp/core/services/services.dart';
 import 'package:ecommercapp/data/datasource/remote/items/items_data.dart';
 import 'package:ecommercapp/data/model/itemsmodel.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class ItemsControllerImpl extends ItemsController {
   List categories = [];
   int? selectedCat;
   String? catid;
+  MyServices myServices = Get.find();
   ItemsData itemsData = ItemsData(Get.find());
 
   List data = [];
@@ -48,7 +50,7 @@ class ItemsControllerImpl extends ItemsController {
   getItems(categoryid) async {
     data.clear();
     statusRequest = StatusRequest.loading;
-    var response = await itemsData.getData(categoryid);
+    var response = await itemsData.getData(categoryid, myServices.sharedPreferences.getString("id")!);
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
