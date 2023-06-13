@@ -25,9 +25,7 @@ class ItemsScreen extends StatelessWidget {
               titleAppBar: "Find Product",
               onPressedIcon: () {},
               onPressedSearch: () {},
-              onPressedFavorites: () {
-                
-              },
+              onPressedFavorites: () {},
             ),
             SizedBox(
               height: 20,
@@ -42,9 +40,10 @@ class ItemsScreen extends StatelessWidget {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, childAspectRatio: 0.7),
                   itemBuilder: (context, index) {
-                  favoritesController.isFavorite[controller.data[index]['items_id']]=controller.data[index]['favorite'];
+                    favoritesController
+                            .isFavorite[controller.data[index]['items_id']] =
+                        controller.data[index]['favorite'];
                     return CustomListItems(
-                    
                         itemsModel:
                             ItemsModel.fromJson(controller.data[index]));
                   },

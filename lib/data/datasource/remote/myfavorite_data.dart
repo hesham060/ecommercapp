@@ -9,4 +9,8 @@ class MyFavoriteData {
     var response = await crud.postData(ApiLink.favoriteView, {"id" : id});
     return response.fold((l) => l, (r) => r);
   }
+  deleteData(String id) async {
+    var response = await crud.postData(ApiLink.deleteFromFavorite, {"id" : id});
+    return response.fold((l) => l, (r) => r);
+  }
 }

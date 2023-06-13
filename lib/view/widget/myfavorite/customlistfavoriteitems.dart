@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommercapp/controller/favorite_controller.dart';
-import 'package:ecommercapp/controller/items_controller.dart';
-import 'package:ecommercapp/data/model/itemsmodel.dart';
+import 'package:ecommercapp/controller/myfavorite_controller.dart';
+import 'package:ecommercapp/data/model/myfavoriteModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,20 +8,20 @@ import '../../../core/constants/colors.dart';
 import '../../../core/fuctions/transaltedatabase.dart';
 import '../../../linkapi.dart';
 
-class CustomListItems extends GetView<ItemsControllerImpl> {
-  final ItemsModel itemsModel;
+class CustomListFavoriteItems extends GetView<MyFavoriteController> {
+  final MyFavoriteModel myfavoriteModel;
   // final bool active;
 
-  const CustomListItems({
+  const CustomListFavoriteItems({
     super.key,
-    required this.itemsModel,
+    required this.myfavoriteModel,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.gotoPageProductDetails(itemsModel);
+        // controller.gotoPageProductDetails(itemsModel);
       },
       child: Card(
         child: Padding(
@@ -34,10 +33,11 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
                 Container(
                   height: 100,
                   child: Hero(
-                    tag: "${itemsModel.itemsImage}",
+                    tag: "${myfavoriteModel.itemsImage}",
                     child: CachedNetworkImage(
-                      imageUrl:
-                          ApiLink.imagesItems + "/" + itemsModel.itemsImage!,
+                      imageUrl: ApiLink.imagesItems +
+                          "/" +
+                          myfavoriteModel.itemsImage!,
                     ),
                   ),
                 ),
@@ -47,7 +47,7 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                        "${translateDatabase(itemsModel.itemsNameAr, itemsModel.itemsName)}")
+                        "${translateDatabase(myfavoriteModel.itemsNameAr, myfavoriteModel.itemsName)}")
                   ],
                 ),
                 Row(
@@ -70,31 +70,16 @@ class CustomListItems extends GetView<ItemsControllerImpl> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${itemsModel.itemsPrice}",
+                      "${myfavoriteModel.itemsPrice}",
                       style: TextStyle(
                           fontSize: 15,
                           color: AppColor.primaryColor,
                           fontFamily: "sans"),
                     ),
-                    GetBuilder<FavoriteController>(
-                      builder: (controller) => IconButton(
-                        onPressed: () {
-                          if (controller.isFavorite[itemsModel.itemsId] ==
-                              "1") {
-                            controller.setFavorite(itemsModel.itemsId, "0");
-                            controller.removeFavorite(itemsModel.itemsId!);
-                          }
-                          controller.setFavorite(itemsModel.itemsId, "1");
-                          controller.addFavorite(itemsModel.itemsId!);
-                        },
-                        icon: Icon(
-                          controller.isFavorite[itemsModel.itemsId] == "1"
-                              ? Icons.favorite
-                              : Icons.favorite_border_outlined,
-                          color: AppColor.primaryColor,
-                        ),
-                      ),
-                    ),
+                  IconButton(onPressed: () {
+                    
+                    controller.deleteDataFromFavorite(myfavoriteModel.favoriteId!);
+                  }, icon: Icon(Icons.delete_outline_outlined))
                   ],
                 ),
               ]),

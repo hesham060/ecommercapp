@@ -40,10 +40,23 @@ class MyFavoriteController extends GetxController {
     update();
   }
 
+  deleteDataFromFavorite(String favoriteId) {
+    data.clear();
+
+    var response = myFavoriteData.deleteData(favoriteId);
+
+    // Start backend
+
+    data.removeWhere((element) => element.favoriteId == favoriteId);
+
+    // End
+
+    update();
+  }
+
   @override
   void onInit() {
     getData();
     super.onInit();
   }
-  
 }
